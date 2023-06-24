@@ -31,14 +31,14 @@ RSpec.describe User, type: :model do
 
   describe 'recent_posts' do
     it 'should returns up to three most recent posts' do
-      post1 = subject.posts.create!(title: 'Post-1', text: 'Hello', created_at: 7.day.ago,
-                                    comments_counter: 3, likes_counter: 4)
+      subject.posts.create!(title: 'Post-1', text: 'Hello', created_at: 7.day.ago,
+                            comments_counter: 3, likes_counter: 4)
       post2 = subject.posts.create!(title: 'Post-2', text: 'Hi there', created_at: 3.days.ago,
                                     comments_counter: 1, likes_counter: 5)
       post3 = subject.posts.create!(title: 'Post-3', text: 'How are you', created_at: 1.days.ago,
                                     comments_counter: 0, likes_counter: 1)
       post4 = subject.posts.create!(title: 'Post-4', text: 'Selam selam', created_at: 4.days.ago,
-                            comments_counter: 4, likes_counter: 3)
+                                    comments_counter: 4, likes_counter: 3)
 
       expect(subject.recent_posts.to_a).to eq [post3, post2, post4]
     end

@@ -23,9 +23,9 @@ describe Post, type: :model do
     end
 
     it 'maximum length of title should be 250 characters' do
-        subject.title = 'abcde' * 300
-        expect(subject).to_not be_valid
-      end
+      subject.title = 'abcde' * 300
+      expect(subject).to_not be_valid
+    end
 
     it 'comments_counter should be an integer' do
       subject.comments_counter = 'not a number'
@@ -56,16 +56,17 @@ describe Post, type: :model do
     end
 
     it 'decrements the user posts_counter after destroy' do
-        user.posts_counter = 1
-        subject.destroy
-        expect(user.posts_counter).to eq(0)
-        end
+      user.posts_counter = 1
+      subject.destroy
+      expect(user.posts_counter).to eq(0)
     end
+  end
 
   describe 'recent_posts' do
     before(:example) do
       @user = User.create(name: 'Tom Kiru', photo: '3*4 person image', bio: 'I am a student', posts_counter: 1)
-      @post = Post.create(title: 'My first post', text: 'Post message', author: @user, comments_counter: 3, likes_counter: 2)
+      @post = Post.create(title: 'My first post', text: 'Post message', author: @user, comments_counter: 3,
+                          likes_counter: 2)
     end
 
     let!(:comment1) do
