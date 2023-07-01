@@ -112,3 +112,33 @@ a {
   border-right: 3px solid black;
   border-radius: 5px;
 }
+
+.post-form,
+.comment-form {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  gap: 1rem;
+  border: 3px solid black;
+}
+
+.comments,
+.posts {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  gap: 1rem;
+}
+
+.comment-btn,
+.like-button {
+  cursor: pointer;
+  padding: 5px 10px;
+  margin-left: 5rem;
+  font-size: 15px;
+  border-bottom: 5px solid black;
+  border-right: 3px solid black;
+  border-radius: 5px;
+}
