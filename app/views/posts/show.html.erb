@@ -21,6 +21,15 @@
             </span>
         </div>
         <p><%= @post.text %></p>
+        <div>
+            <% if @current_user %>
+            <%= form_with(model: @post, url: like_user_post_path(user_id: @current_user.id, id: @post.id), method: :post, local: true) do |form| %>
+            <%= form.button type: :submit, class: 'like-button' do %>
+                Like
+            <% end %>
+            <% end %>
+            <% end %>
+        </div>
     </div>
 
     <div class="post-comments">
@@ -29,6 +38,12 @@
                 <span class="comment-author"><%= comment.user.name %>:</span>
                 <span><%= comment.text %></span>
             </div>
+        <% end %>
+    </div>
+
+    <div class ="like-comment">
+        <%= link_to new_user_post_comment_url(@user, @post), class: 'btn-link' do %>
+        <button>Add comment</button>
         <% end %>
     </div>
 </section>
