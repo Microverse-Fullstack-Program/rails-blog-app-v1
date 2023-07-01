@@ -6,9 +6,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find_by_id(params[:id])
 
-    if @user.nil?
-      redirect_to users_path
-    end
+    redirect_to users_path if @user.nil?
     @posts = @user.posts
   end
 end
