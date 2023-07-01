@@ -1,1 +1,35 @@
-<h1>Here is a list of comments for a given post by a given user</h1>
+<section class="container">
+    <div class = "post">
+        <h3>Post #<%= @user.posts.index(@post) + 1 %>
+            by
+            <%= @user.name %>
+        </h3>
+        <div class="count">
+            <span>Comments:
+                <% if @post.comments_counter %>
+                <%= @post.comments_counter %>
+                <% else %>
+                0
+                <% end %>
+            </span>
+            <span>Likes:
+                <% if @post.likes_counter %>
+                <%= @post.likes_counter %>
+                <% else %>
+                0
+                <% end %>
+            </span>
+        </div>
+        <p><%= @post.text %></p>
+    </div>
+
+    <div class="post-comments">
+        <% @post.comments.each do |comment| %>
+            <div class="comment">
+                <span class="comment-author"><%= comment.user.name %>:</span>
+                <span><%= comment.text %></span>
+            </div>
+        <% end %>
+    </div>
+</section>
+
