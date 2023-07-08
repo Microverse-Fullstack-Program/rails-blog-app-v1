@@ -1,8 +1,8 @@
 
 <section class="container">
-    <div class="user">
-         <div class="user-photo">
-            <img src="<%= @user.photo %>" alt="User Photo">
+  <div class="user">
+    <div class="user-photo">
+      <img src="<%= @user.photo %>" alt="User Photo">
         </div>
 
         <div class="user-info">
@@ -58,6 +58,9 @@
     <% end %>
 
     <div class="btn-link">
+        <button>
+           <%= link_to 'Add New Post', new_user_post_path(@user) %>
+        </button>
         <button>Pagination</button>
     </div>
 </section>
