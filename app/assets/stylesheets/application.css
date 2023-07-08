@@ -104,17 +104,17 @@ a {
   align-self: center;
 }
 
+button {
+  border-bottom: 5px solid black;
+  border-right: 3px solid black;
+  border-radius: 5px;
+}
+
 .btn-link,
 .btn-link button {
   cursor: pointer;
   padding: 5px;
   font-size: 15px;
-}
-
-button {
-  border-bottom: 5px solid black;
-  border-right: 3px solid black;
-  border-radius: 5px;
 }
 
 .post-form,
