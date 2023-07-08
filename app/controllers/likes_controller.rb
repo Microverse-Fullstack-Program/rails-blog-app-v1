@@ -11,7 +11,10 @@ class LikesController < ApplicationController
 
   # GET /likes/new
   def new
-    @like = Like.new
+    @post = Post.find(params[:id])
+    @like = Like.new(author_id: params[:user_id], post_id: @post.id)
+    @like.save
+    redirect_to user_post_path
   end
 
   # GET /likes/1/edit
