@@ -25,7 +25,7 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.author_id = current_user.id
     @post.comments_counter = 0
-    @post.likes_counters = 0
+    @post.likes_counter = 0
 
     if @post.save
       redirect_to user_posts_path, notice: 'Post was successfully created.'
