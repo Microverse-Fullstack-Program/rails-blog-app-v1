@@ -105,9 +105,44 @@ a {
   align-self: center;
 }
 
+button {
+  border-bottom: 5px solid black;
+  border-right: 3px solid black;
+  border-radius: 5px;
+}
+
+.btn-link,
 .btn-link button {
   cursor: pointer;
   padding: 5px;
+  font-size: 15px;
+}
+
+.post-form,
+.comment-form {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  gap: 1rem;
+  border: 3px solid black;
+  background-color: #f5f5f5;
+}
+
+.comments,
+.posts {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  gap: 1rem;
+}
+
+.comment-btn,
+.like-button {
+  cursor: pointer;
+  padding: 5px 10px;
+  margin-left: 5rem;
   font-size: 15px;
   border-bottom: 5px solid black;
   border-right: 3px solid black;
@@ -240,4 +275,11 @@ ul {
   font-size: 15px;
   color: blue;
   border: none;
+}
+
+.form-elements {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  margin: 1rem 0;
 }
