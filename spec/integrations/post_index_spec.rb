@@ -45,4 +45,9 @@ RSpec.describe 'Post #Index Page', type: :feature do
   it 'It should show the pagination' do
     page.has_content?('Next')
   end
+
+  it 'It should redirect to show post' do
+    find("#post-#{@post.id}").click
+    expect(current_path).to eq(user_post_path(@user.id, @post.id))
+  end
 end

@@ -24,7 +24,7 @@
 
     <% @user.posts.each do |post| %>
         <div class = "post">
-           <%= link_to user_post_url(user_id: @user.id, id: post.id), class: 'post-link' do %>
+           <%= link_to user_post_url(user_id: @user.id, id: post.id), class: 'post-link', id: "post-#{post.id}" do %>
              <h3>Post #<%= @user.posts.index(post) + 1 %></h3>
            <% end %>
            <p><%= post.text %></p>
