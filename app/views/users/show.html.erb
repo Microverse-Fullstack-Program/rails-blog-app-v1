@@ -42,7 +42,7 @@
             <div class="count">
                 <div>
                     <% if can? :destroy, post %>
-                        <%= link_to user_post_url(post.author_id, id: post.id), method: :delete, class: 'btn-link' do %>
+                        <%= link_to user_post_url(post.author_id, post), method: :delete, class: 'btn-link' do %>
                             <button>Delete Post</button>
                         <% end %>
                     <% end %>
