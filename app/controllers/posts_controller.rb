@@ -27,7 +27,8 @@ class PostsController < ApplicationController
       render 'new'
     end
   end
-def destroy
+
+  def destroy
     @post = Post.find(params[:id])
 
     if can? :destroy, @post
@@ -37,6 +38,7 @@ def destroy
       redirect_to user_post_path(@post.author_id, @post), alert: 'Unauthorized action.'
     end
   end
+
   private
 
   def post_params
