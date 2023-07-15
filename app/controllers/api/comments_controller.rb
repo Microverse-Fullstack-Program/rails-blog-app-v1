@@ -13,6 +13,7 @@ class Api::CommentsController < ApplicationController
     post = Post.find(params[:post_id])
     comment = post.comments.build(comment_params)
     comment.user = current_user
+    
     if comment.save
       render json: comment, status: :created
     else
