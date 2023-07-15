@@ -7,9 +7,9 @@ class Ability
 
     return unless user.present?
 
-    can :manage, User, id: user.id        # user can manage only his own profile
-    can :manage, Post, author_id: user.id     # user can manage only his own posts
-    can :manage, Comment, user_id: user.id     # user can manage only his own comments
+    can :manage, User, id: user.id # user can manage only his own profile
+    can :manage, Post, author_id: user.id # user can manage only his own posts
+    can :manage, Comment, user_id: user.id # user can manage only his own comments
     can :create, Like # user can create likes
 
     return unless user.role == 'admin'
