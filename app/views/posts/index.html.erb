@@ -55,6 +55,13 @@
                         0
                         <% end %>
                     </span>
+                    <span>
+                    <%= form_with(model: Like.new, url: like_user_post_path(post.author, post)) do |form| %>
+                    <%= form.button type: :submit do %>
+                        &#9829; 
+                    <% end %>
+                    <% end %>
+                    </span>
                 </div>
             </div>
             <hr />

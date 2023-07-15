@@ -117,7 +117,7 @@ a {
 
 .post-text {
   display: grid;
-  grid-template-columns: 3fr 1fr;
+  grid-template-columns: 2fr 0.5fr;
   gap: 1rem;
 }
 
@@ -131,6 +131,16 @@ a {
   gap: 0.5rem;
 }
 
+.post-text .count {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  padding: 0.5rem 2rem 0.5rem 10vh;
+  font-size: medium;
+  gap: 0.5rem;
+}
+
 .count span {
   padding: 0 0.25rem;
 }
@@ -138,7 +148,7 @@ a {
 .like_count_btn {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  align-items: center;
   gap: 1rem;
 }
 
@@ -163,8 +173,11 @@ form input[type="submit"] {
   padding: 5px;
 }
 
-.like_count_btn form {
-  width: 3vw;
+.like_count_btn button {
+  width: 2vw;
+  height: 2vw;
+  font-size: x-large;
+  padding: 0;
 }
 
 form input[type="hidden"] {
@@ -255,6 +268,10 @@ form {
 form input {
   width: 30vw;
   padding: 0.5rem;
+}
+
+.like_count_btn form {
+  width: 3vw;
 }
 
 .comments form {
