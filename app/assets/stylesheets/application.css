@@ -138,6 +138,7 @@ a {
 .like_count_btn {
   display: flex;
   flex-direction: row;
+  justify-content: space-around;
   gap: 1rem;
 }
 
@@ -162,8 +163,13 @@ form input[type="submit"] {
   padding: 5px;
 }
 
-.like_count_btn button {
-  width: auto;
+.like_count_btn form {
+  width: 3vw;
+}
+
+form input[type="hidden"] {
+  width: 1px;
+  height: 1px;
 }
 
 .btn-link,
