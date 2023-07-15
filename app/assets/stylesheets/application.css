@@ -136,6 +136,7 @@ a {
   flex-direction: column;
   justify-content: space-around;
   align-items: flex-start;
+  text-align: center;
   padding: 0.5rem 2rem 0.5rem 10vh;
   font-size: medium;
   gap: 0.5rem;
@@ -402,4 +403,27 @@ ul {
 .short-button {
   width: 7vw;
   align-items: flex-end;
+}
+
+.user-comments-likes {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  margin: 1rem 0;
+}
+
+.count form {
+  width: auto;
+}
+
+.post .count {
+  display: grid;
+  grid-template-columns: 0.5fr 0.5fr;
+  justify-items: end;
+  gap: 1rem;
+  width: 100%;
+  margin: 1rem 0;
 }
