@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  load_and_authorize_resource
+
   def index
     @user = User.includes(posts: { comments: :author }).find(params[:user_id])
     @current_user = current_user
@@ -24,6 +26,17 @@ class PostsController < ApplicationController
       redirect_to user_posts_path, notice: 'Post was successfully created.'
     else
       render 'new'
+    end
+  end
+
+  def destroy
+    @post = Post.find(params[:id])
+
+    if can? :destroy, @post
+      @post.destroy
+      redirect_to "/users/#{current_user.id}/posts", notice: 'Successfully deleted.'
+    else
+      redirect_to user_post_path(@post.author_id, @post), alert: 'Unauthorized action.'
     end
   end
 

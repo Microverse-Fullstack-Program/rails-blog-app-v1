@@ -11,19 +11,28 @@
   </head>
 
   <body>
-    <p class="navbar-text float-right">
     <% if user_signed_in? %>
-      Logged in as <strong><%= current_user.name %></strong>.
-      <%= link_to "Edit profile", edit_user_registration_path, class: "navbar-link" %> |
-      <%= link_to "Logout", destroy_user_session_path, data: { "turbo-method": :delete }, class: "navbar-link"  %>
-    <% end %>
-    </p>
-      <% if notice %>
-      <p style="color: green" class="notice"><%= notice %></p>
-    <% end %>
+      <div class="wrapper">
+        <div class="navbar">
+          <strong>
+            <%=  %>
+            <%= link_to current_user.name, users_path %>
+          </strong>.
+          <div class="logout">
+            <%= link_to "Edit profile", edit_user_registration_path, class: "navbar-link" %> |
+            <%= link_to "Logout", destroy_user_session_path, data: { "turbo-method": :delete }, class: "navbar-link"  %>
+          </div>
+        </div>
+      
+        <% if notice %>
+          <p style="color: green" class="notice"><%= notice %></p>
+        <% end %>
 
-
-    <%= yield %>
+        <%= yield %>
+      </div>
+    <% else %>
+      <%= yield %>
+    <% end %>
 
   </body>
 </html>

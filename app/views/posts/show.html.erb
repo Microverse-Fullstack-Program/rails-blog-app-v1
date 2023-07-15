@@ -4,47 +4,56 @@
             by
             <%= @user.name %>
         </h3>
-        <div class="count">
-            <span>Comments:
-                <% if @post.comments_counter %>
-                <%= @post.comments_counter %>
-                <% else %>
-                0
-                <% end %>
-            </span>
-            <span>Likes:
-                <% if @post.likes_counter %>
-                <%= @post.likes_counter %>
-                <% else %>
-                0
-                <% end %>
-            </span>
-        </div>
-        <p><%= @post.text %></p>
-        <div>
-            <% if @current_user %>
-            <%= form_with(model: @post, url: like_user_post_path(user_id: @current_user.id, id: @post.id), method: :post, local: true) do |form| %>
-            <%= form.button type: :submit, class: 'like-button' do %>
-                Like
-            <% end %>
-            <% end %>
-            <% end %>
-        </div>
-    </div>
-
-    <div class="post-comments">
-        <% @post.comments.each do |comment| %>
-            <div class="comment">
-                <span class="comment-author"><%= comment.user.name %>:</span>
-                <span><%= comment.text %></span>
+        <div class="post-text">
+            <p><%= @post.text %></p>
+            <div class="count">
+                <span>Comments:
+                    <% if @post.comments_counter %>
+                    <%= @post.comments_counter %>
+                    <% else %>
+                    0
+                    <% end %>
+                </span>
+                <div class="like_count_btn">
+                    <span>Likes:
+                        <% if @post.likes_counter %>
+                        <%= @post.likes_counter %>
+                        <% else %>
+                        0
+                        <% end %>
+                    </span>
+                    <%= form_with(model: Like.new, url: like_user_post_path(@post.author, @post)) do |form| %>
+                    <%= form.button type: :submit do %>
+                        &#9829; 
+                    <% end %>
+                    <% end %>
+                </div>
+ 
             </div>
-        <% end %>
-    </div>
-
-    <div class ="like-comment">
+        </div>
+        <hr />
+ 
+    <% if @post.comments.length > 0%>
+        <div class="post-comments">
+            <h3>Comments</h3>
+            <% @post.comments.each do |comment| %>
+                <div class="comments">
+                    <p class="comment-author"><%= comment.user.name %>:</p>
+                    <p><%= comment.text %></p>
+ 
+                    <% if can? :destroy, comment %>
+                        <%= form_with url: "/users/#{@post.author.id}/posts/#{@post.id}/comments/#{comment.id}" , method: :delete do |f|%>
+                            <%= f.submit 'Delete', class: 'short-button' %>
+                        <%end%>
+                    <%end%>
+                </div>
+            <% end %>
+        </div>
+    <%end%>
+ 
+    <div class ="add-comment">
         <%= link_to new_user_post_comment_url(@user, @post), class: 'btn-link' do %>
         <button>Add comment</button>
         <% end %>
     </div>
 </section>
-
