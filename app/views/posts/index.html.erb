@@ -1,15 +1,14 @@
-
 <section class="container">
   <div class="user">
     <div class="user-photo">
       <img src="<%= @user.photo %>" alt="User Photo">
         </div>
-
+ 
         <div class="user-info">
             <%= link_to user_url(@user), class: 'name' do %>
                 <h2><%= @user.name %></h2>
             <% end %>
-
+ 
             <div class="user-posts">
                 <p>Number of Posts:
                     <% if @user.posts_counter %>
@@ -18,10 +17,15 @@
                         0
                     <% end %>
                 </p>
+                <%if @user.name === current_user.name %>
+                    <button>
+                        <%= link_to ' Add New Post ', new_user_post_path(@user) %>
+                    </button>
+                <%end%>
             </div>
         </div>
     </div>
-
+ 
     <% @posts.each do |post| %>
         <div class = "post">
            <%= link_to user_post_url(user_id: @user.id, id: post.id), class: 'post-link' do %>
@@ -44,9 +48,15 @@
                     <% end %>
                 </span>
             </div>
+            <% if can? :destroy, post %>
+                <%= link_to user_post_url(post.author_id, id: post.id), method: :delete, class: 'btn-link' do %>
+                    <button>Delete Post</button>
+                <% end %>
+            <% end %>
         </div>
-
-        <div class="post-comments">
+ 
+        <% if post.recent_comments.length > 0 %>
+            <div class="post-comments">
             <% post.recent_comments.each do |comment| %>
                 <div class="comment">
                     <span class="comment-author"><%= comment.user.name %>:</span>
@@ -54,13 +64,10 @@
                 </div>
             <% end %>
             </div>
-        </div>
+        <% end %>
     <% end %>
-
+ 
     <div class="btn-link">
-        <button>
-           <%= link_to 'Add New Post', new_user_post_path(@user) %>
-        </button>
         <button>Pagination</button>
     </div>
 </section>
