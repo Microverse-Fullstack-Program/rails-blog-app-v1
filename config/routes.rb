@@ -11,4 +11,11 @@ Rails.application.routes.draw do
       post 'like', on: :member
     end
   end
+  namespace :api do
+    resources :users, only: [] do
+      resources :posts, only: [:index] do
+        resources :comments, only: [:index, :create]
+      end
+    end
+  end
 end
