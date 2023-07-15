@@ -26,45 +26,56 @@
         </div>
     </div>
 
-    <% @posts.each do |post| %>
+    <% @user.posts.each do |post| %>
         <div class = "post">
            <%= link_to user_post_url(user_id: @user.id, id: post.id), class: 'post-link', id: "post-#{post.id}" do %>
              <h3>Post #<%= @user.posts.index(post) + 1 %></h3>
            <% end %>
            <p><%= post.text %></p>
             <div class="count">
-               <span>Comments:
-                <% if post.comments_counter %>
-                    <%= post.comments_counter %>
-                    <% else %>
-                    0
+                <div>       
+                    <% if can? :destroy, post %>
+                        <%= link_to user_post_url(post.author_id, id: post.id), method: :delete, class: 'btn-link' do %>
+                            <button>Delete Post</button>
+                        <% end %>
                     <% end %>
-                </span>
-               <span>Likes:
-                <% if post.likes_counter %>
-                <%= post.likes_counter %>
-                    <% else %>
-                    0
-                    <% end %>
-                </span>
+                </div>
+                <div>
+                    <span>Comments:
+                        <% if post.comments_counter %>
+                        <%= post.comments_counter %>
+                        <% else %>
+                        0
+                        <% end %>
+                    </span>
+                    <span>Likes:
+                        <% if post.likes_counter %>
+                        <%= post.likes_counter %>
+                        <% else %>
+                        0
+                        <% end %>
+                    </span>
+                </div>
             </div>
-            <% if can? :destroy, post %>
-                <%= link_to user_post_url(post.author_id, id: post.id), method: :delete, class: 'btn-link' do %>
-                    <button>Delete Post</button>
-                <% end %>
-            <% end %>
-        </div>
- 
-        <% if post.recent_comments.length > 0 %>
-            <div class="post-comments">
-            <% post.recent_comments.each do |comment| %>
-                <div class="comment">
-                    <span class="comment-author"><%= comment.author.name %>:</span>
-                    <span><%= comment.text %></span>
+            <hr />
+            <% if post.recent_comments.length > 0 %>
+                <div class="post-comments">
+                    <h3>Comments</h3>
+                    <% post.recent_comments.each do |comment| %>
+                    <div class="comments">
+                        <p class="comment-author"><%= comment.user.name %>:</p>
+                        <p><%= comment.text %></p>
+    
+                        <% if can? :destroy, comment %>
+                            <%= form_with url: "/users/#{post.author.id}/posts/#{post.id}/comments/#{comment.id}" , method: :delete do |f|%>
+                                <%= f.submit 'Delete', class: 'short-button' %>
+                            <%end%>
+                        <%end%>
+                    </div>
+                    <% end %>
                 </div>
             <% end %>
-            </div>
-        <% end %>
+        </div>
     <% end %>
  
     <div class="btn-link">

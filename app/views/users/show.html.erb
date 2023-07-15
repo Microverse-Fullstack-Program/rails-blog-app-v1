@@ -40,29 +40,31 @@
 
            <p><%= post.text %></p>
             <div class="count">
-               <span>
-                Comments:
-                <% if post.comments_counter %>
-                    <%= post.comments_counter %>,
-                <% else %>
-                    0,
-                <% end %>
-                </span>
-               <span>
-                Likes:
-                <% if post.likes_counter %>
-                    <%= post.likes_counter %>
-                <% else %>
-                    0
-                <% end %>
-                </span>
-  
-                <% if can? :destroy, post %>
-                    <%= link_to user_post_url(post.author_id, id: post.id), method: :delete, class: 'btn-link' do %>
-                        <button>Delete Post</button>
+                <div>
+                    <% if can? :destroy, post %>
+                        <%= link_to user_post_url(post.author_id, id: post.id), method: :delete, class: 'btn-link' do %>
+                            <button>Delete Post</button>
+                        <% end %>
                     <% end %>
-                <% end %>
+                </div>
+                <div>
+                    <span>Comments:
+                        <% if post.comments_counter %>
+                            <%= post.comments_counter %>,
+                        <% else %>
+                            0,
+                        <% end %>
+                        </span>
+                    <span>Likes:
+                        <% if post.likes_counter %>
+                            <%= post.likes_counter %>
+                        <% else %>
+                            0
+                        <% end %>
+                    </span>
+                </div>
             </div>
+            <hr />
         <% end %>
     </div>
 

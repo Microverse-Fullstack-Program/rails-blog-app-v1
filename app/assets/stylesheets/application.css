@@ -102,6 +102,7 @@ a {
   display: flex;
   flex-direction: column;
   border: 3px solid black;
+  margin-bottom: 1rem;
 }
 
 .post h3 {
@@ -122,8 +123,8 @@ a {
 
 .count {
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+  flex-direction: row;
+  justify-content: space-around;
   align-items: center;
   padding: 0.5rem 1rem;
   font-size: medium;
@@ -149,10 +150,12 @@ a {
 }
 
 .btn-link {
+  width: auto;
   align-self: center;
 }
 
-button {
+button,
+form input[type="submit"] {
   border-bottom: 5px solid black;
   border-right: 3px solid black;
   border-radius: 5px;
@@ -199,7 +202,8 @@ button {
   align-self: center;
 }
 
-.comment-form textarea {
+.comment-form textarea,
+.post-form textarea {
   width: 100%;
   height: 100px;
   padding: 0.5rem;
@@ -358,8 +362,10 @@ ul {
 }
 
 .form-elements {
+  width: 100%;
   display: flex;
   flex-direction: row;
+  align-items: center;
   gap: 1rem;
   margin: 1rem 0;
 }
