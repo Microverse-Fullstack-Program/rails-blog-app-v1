@@ -86,4 +86,3 @@ production:
   database: rails_blog_app
   username: postgres
   password: postgres#13579
-  

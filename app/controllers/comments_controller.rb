@@ -18,6 +18,18 @@ class CommentsController < ApplicationController
     end
   end
 
+  def destroy
+    @comment = Comment.find(params[:id])
+    @post = @comment.post
+
+    if can? :destroy, @comment
+      @comment.destroy
+      redirect_to user_post_path(@post.author, @post), notice: 'Comment was successfully deleted.'
+    else
+      redirect_to user_posts_path(current_user), alert: 'You are not authorized to delete this comment.'
+    end
+  end
+
   private
 
   def comment_params
